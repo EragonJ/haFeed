@@ -53,7 +53,7 @@ class Exchanger
         return true;
     }
 
-    public function process($output_control = DISPLAY_CONTENT)
+    public function process($output_control = self::DISPLAY_CONTENT)
     {
         # 檢查是否相依的變數都已準備好
         $this->checkIfRequirementWereFit();
@@ -79,7 +79,7 @@ class Exchanger
         
         $final_data = $this->sorter_obj->sort($new_data_set);
 
-        if($output_control == RENDER_ONLY)
+        if($output_control == self::RENDER_ONLY)
         {
             $result = $this->exporter->render($final_data);
 
