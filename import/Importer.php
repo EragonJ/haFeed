@@ -1,9 +1,5 @@
 <?php
 
-namespace haFeed\Import;
-
-use haFeed\DataObject as DataObject;
-
 abstract class Importer
 {    
     protected $import_name = 'unnamed importer'; 

@@ -1,7 +1,5 @@
 <?php
 
-namespace haFeed;
-
 require_once 'DataObject.php';
 require_once 'Sorter.php';
 
@@ -14,21 +12,21 @@ class Exchanger
     protected $export_obj = null;
     protected $sorter_obj = null;
 
-    public function addImporter(Import\Importer $import_obj)
+    public function addImporter(Importer $import_obj)
     {
         $this->importer[$import_obj->getName()] = $import_obj;
 
         return true;
     }
         
-    public function removeImporter(Import\Importer $import_obj) 
+    public function removeImporter(Importer $import_obj) 
     {
         unset($this->importer[$import_obj->getName()]); 
 
         return true; 
     }
         
-    public function setExporter(Export\Exporter $export_obj) 
+    public function setExporter(Exporter $export_obj) 
     { 
         $this->exporter = $export_obj;
 
@@ -39,17 +37,17 @@ class Exchanger
     {
         if(sizeof($this->importer) == 0)
         {
-            throw new \Exception('haFeed->Exchange: No importer');
+            throw new Exception('haFeed->Exchange: No importer');
         }
 
         if(is_null($this->exporter))
         {
-            throw new \Exception('haFeed->Exchange: No exporter');
+            throw new Exception('haFeed->Exchange: No exporter');
         }
         
         if(is_null($this->sorter_obj))
         {
-            throw new \Exception('haFeed->Exchange: No sorter');
+            throw new Exception('haFeed->Exchange: No sorter');
         }
         
         return true;
@@ -80,7 +78,7 @@ class Exchanger
         }
         
         $final_data = $this->sorter_obj->sort($new_data_set);
-        
+
         if($output_control == RENDER_ONLY)
         {
             $result = $this->exporter->render($final_data);
@@ -93,6 +91,8 @@ class Exchanger
 
             return true;
         }
+
+        return $result;
     }
 
     public function setSorter(Sorter $sorter_object)

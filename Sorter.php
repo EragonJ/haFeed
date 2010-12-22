@@ -1,7 +1,5 @@
 <?php
 
-namespace haFeed;
-
 abstract class Sorter
 {
     abstract public function compare($a, $b);

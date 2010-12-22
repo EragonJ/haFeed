@@ -1,11 +1,5 @@
 <?php
 
-namespace haFeed\Import;
-
-use haFeed\DataObject as DataObject;
-use \phpQuery as phpQuery;
-use \pq as pq;
-
 require 'phpQuery.php';
 
 require_once 'Importer.php';

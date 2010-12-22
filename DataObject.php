@@ -1,8 +1,6 @@
 <?php
 
-namespace haFeed;
-
-class DataObject implements \SeekableIterator
+class DataObject implements SeekableIterator
 {
     protected $items = array();
     protected $item_id = 0;
