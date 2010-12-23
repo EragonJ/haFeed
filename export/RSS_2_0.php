@@ -19,7 +19,7 @@ class RSS_2_0_Exporter extends Exporter
 
         foreach($data->dump() as $data_item)
         {
-            $rss_source .= '<item><title>'.$data_item['title'].'</title><link>'.$data_item['link'].'</link><description>'.$data_item['desc'].'</description><pubDate>'.date(DATE_RFC822,$data_item['pubDate']).'</pubDate><guid>'.$data_item['link'].'</guid></item>'. "\n";
+            $rss_source .= '<item><title>'.$data_item['title'].'</title><link>'.$data_item['link'].'</link><description><![CDATA['.$data_item['desc'].']]></description><pubDate>'.date(DATE_RFC822,$data_item['pubDate']).'</pubDate><guid>'.$data_item['link'].'</guid></item>'. "\n";
         }
 
         $rss_source .= '</channel></rss>';
