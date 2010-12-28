@@ -19,11 +19,28 @@ class RSS_2_0_Exporter extends Exporter
 
         foreach($data->dump() as $data_item)
         {
-            $rss_source .= '<item><title>'.$data_item['title'].'</title><link>'.$data_item['link'].'</link><description><![CDATA['.$data_item['desc'].']]></description><pubDate>'.date(DATE_RFC822,$data_item['pubDate']).'</pubDate><guid>'.$data_item['link'].'</guid></item>'. "\n";
+            $rss_source .= '<item><title>'.$data_item['title'].'</title><link>'.$this->encodeParameter($data_item['link']).'</link><description><![CDATA['.$data_item['desc'].']]></description><pubDate>'.date(DATE_RFC822,$data_item['pubDate']).'</pubDate><guid>'.$this->encodeParameter($data_item['link']).'</guid></item>'. "\n";
         }
 
         $rss_source .= '</channel></rss>';
 
         return $rss_source;
+    }
+
+    protected function encodeParameter($url)
+    {
+        $pos_of_question_mark = strpos($url, '?');
+        
+        if($pos_of_question_mark === FALSE)
+        {
+            return $url;
+        }
+        
+        $address = substr($url, 0, $pos_of_question_mark);
+        $parameter = substr($url, $pos_of_question_mark + 1, strlen($url));
+        $new_address = $address . '?' . rawurlencode($parameter);
+
+        return $new_address;
+
     }
 }
