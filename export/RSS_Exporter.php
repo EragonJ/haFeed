@@ -2,7 +2,7 @@
 
 require_once 'Exporter.php';
 
-class RSS_1_0_Exporter extends Exporter
+class RSS_Exporter extends Exporter
 {
     public function export(DataObject $data)
     {
