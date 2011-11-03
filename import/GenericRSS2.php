@@ -12,7 +12,11 @@ class GenericRSS2 extends Importer
     {
         $data_obj = new DataObject;
 
+        # Set a preferred user_agent , otherwise some websites will block us.
+        ini_set('user_agent', 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1');
+
         $rawFeed = file_get_contents($this->feed_url);
+
         $xml = new SimpleXmlElement($rawFeed);
 
         foreach($xml->channel->item as $item)
@@ -47,6 +51,7 @@ class GenericRSS2 extends Importer
 
     protected function setFeedURL($feed_url = null)
     {
+
         if(is_null($feed_url))
         {
             throw new Exception('haFeed::Import->Importer: Feed URL not given.');
